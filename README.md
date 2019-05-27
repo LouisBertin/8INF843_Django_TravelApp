@@ -15,6 +15,7 @@ A Django project
 
 ## Database
 
+* :warning: duplicate `./project/settings.py.env` and rename it `settings.py`. And add your database credentials inside!
 * To have the latest database version, don't forget to run this command line : `docker-compose run web python manage.py migrate`
 
 ## How to use Django CLI
