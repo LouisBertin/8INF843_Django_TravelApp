@@ -1,0 +1,8 @@
+version: '2'
+services:
+  django:
+    scale: 1
+  db:
+    scale: 1
+  adminer:
+    scale: 1
