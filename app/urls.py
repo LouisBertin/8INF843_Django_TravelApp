@@ -7,5 +7,5 @@ urlpatterns = [
     # auth
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', SignUp.as_view(), name='signup'),
-    path('preferences/', views.PreferenceUpdate.as_view(), name='preferences_update'),
+    path('preferences/', views.update_profile, name='preferences_update'),
 ]

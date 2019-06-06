@@ -1,0 +1,10 @@
+{% extends 'app/layout.html' %}
+
+{% block content %}
+<h2>Update preferences</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ profile_form.as_p }}
+    <button type="submit">Save changes</button>
+</form>
+{% endblock %}
