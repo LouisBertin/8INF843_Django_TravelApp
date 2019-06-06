@@ -5,7 +5,7 @@
     <p>Result is {{ result }}</p>
 
     {% if user.is_authenticated %}
-        <p>Welcome {{ user.username }}, you can <a class="btn btn-outline-primary" href="#">Create a post</a></p>
+        <p>Welcome {{ user.username }}, you can <a class="btn btn-outline-primary" href="{% url 'post_create' %}">Create a post</a></p>
     {% endif %}
 
 {% endblock %}

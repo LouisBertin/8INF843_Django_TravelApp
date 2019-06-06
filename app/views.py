@@ -32,3 +32,4 @@ class PostCreate(CreateView):
     model = Post
     template_name = 'user/post_create_form.html'
     success_url = '/'
+    fields = ('title', 'passengers_nb', 'departure', 'arrival', 'full')
