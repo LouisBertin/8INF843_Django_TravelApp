@@ -3,7 +3,11 @@
 {% block content %}
 
 <h1>{{ post.title }}</h1>
-<p>{{ post.departure }}</p>
+<p>departure : {{ post.departure }}</p>
+<p>arrival : {{ post.arrival }}</p>
+
+{% if user.is_authenticated and user.id != post.user.id and not is_reserved %}
 <a class="btn btn-outline-primary" href="{% url 'post_reserve' id=post.id %}" onclick="return confirm('Are you sure?')">Reserve</a>
+{% endif %}
 
 {% endblock %}

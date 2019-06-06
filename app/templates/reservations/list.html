@@ -2,8 +2,16 @@
 
 {% block content %}
 
+<h2>Mes réservations</h2>
+<hr>
 {% for reservation in reservations %}
     <li>{{ reservation.post.title }}</li>
+{% endfor %}
+
+<h2>Mes publications</h2>
+<hr>
+{% for post in posts %}
+<li>{{ post.title }} - <a href="{% url 'post_delete' id=post.id %}">delete</a></li>
 {% endfor %}
 
 {% endblock %}

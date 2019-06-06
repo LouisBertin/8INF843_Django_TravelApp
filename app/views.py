@@ -30,9 +30,11 @@ class PostCreate(CreateView):
 
 def post_details(request, id):
     post = Post.objects.get(id=id)
+    is_reserved = Reservation.objects.filter(post=post, user_passenger=request.user).exists()
 
     context = {
-        'post': post
+        'post': post,
+        'is_reserved': is_reserved
     }
     return render(request, 'post/details.html', context)
 
@@ -52,12 +54,20 @@ def post_reserve(request, id):
     return redirect('/')
 
 
+def post_delete(request, id):
+    Post.objects.get(id=id).delete()
+
+    return redirect('reservations_list')
+
+
 # Reservations
 def reservations_list(request):
     reservations = Reservation.objects.all().filter(user_passenger=request.user)
+    posts = Post.objects.all().filter(user=request.user)
 
     context = {
-        'reservations': reservations
+        'reservations': reservations,
+        'posts': posts
     }
     return render(request, 'reservations/list.html', context)
 
