@@ -3,8 +3,13 @@
 {% block content %}
     {% if user.is_authenticated %}
         <p>Welcome {{ user.username }}, you can <a class="btn btn-outline-primary" href="{% url 'post_create' %}">Create a post</a></p>
-    {% endif %}
+    {% endif %}<br>
 
+    <form action="{% url 'search_results' %}" method="get">
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="q">
+    </form>
+
+    <br>
     <h2>All articles</h2>
     <ul>
         {% for post in posts %}
@@ -12,5 +17,4 @@
             <a href="{% url 'post_details' id=post.id %}">details</a>
         {% endfor %}
     </ul>
-
 {% endblock %}

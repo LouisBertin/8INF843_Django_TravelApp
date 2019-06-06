@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
 from app.forms import PreferenceForm
@@ -71,6 +73,17 @@ def reservations_list(request):
     }
     return render(request, 'reservations/list.html', context)
 
+
+# Search
+class SearchResultsView(ListView):
+    model = Post
+    template_name = 'post/search.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Post.objects.filter(
+                Q(departure__icontains=query) | Q(arrival__icontains=query)
+            )
 
 # Preferences
 @login_required

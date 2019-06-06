@@ -1,0 +1,15 @@
+{% extends 'app/layout.html' %}
+
+{% block content %}
+<h1>Search Results</h1>
+
+<ul>
+    {% for post in object_list %}
+    <li>
+        <a href="{% url 'post_details' id=post.id %}">{{ post.title }}, {{ post.departure }} - {{ post.arrival }}</a>
+    </li>
+    {% empty %}
+        <p>No results.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

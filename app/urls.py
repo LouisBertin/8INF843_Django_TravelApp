@@ -12,6 +12,8 @@ urlpatterns = [
     # reservation
     path('reservations/', views.reservations_list, name='reservations_list'),
 
+    # search
+    path('search/', views.SearchResultsView.as_view(), name='search_results'),
     # auth
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', SignUp.as_view(), name='signup'),
