@@ -8,10 +8,21 @@ from app.models import Post, Preference
 
 # Create your views here.
 def index(request):
-    result = str(10+10)
+    posts = Post.objects.all()[:5]
 
-    context = {'result': result}
+    context = {
+        'posts': posts,
+    }
     return render(request, 'app/index.html', context)
+
+
+def post_details(request, id):
+    post = Post.objects.get(id=id)
+
+    context = {
+        'post': post
+    }
+    return render(request, 'post/details.html', context)
 
 
 @login_required
