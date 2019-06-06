@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -21,12 +23,21 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
-class Preference(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    cigarette = models.BooleanField()
-    animal = models.BooleanField()
-    discussion = models.BooleanField()
-    big_suitcase = models.BooleanField()
 
-    def __str__(self):
-        return self.user
+class Preference(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    cigarette = models.BooleanField(default=False)
+    animal = models.BooleanField(default=False)
+    discussion = models.BooleanField(default=True)
+    big_suitcase = models.BooleanField(default=True)
+
+
+@receiver(post_save, sender=User)
+def create_user_preference(sender, instance, created, **kwargs):
+    if created:
+        Preference.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_preference(sender, instance, **kwargs):
+    instance.preference.save()
