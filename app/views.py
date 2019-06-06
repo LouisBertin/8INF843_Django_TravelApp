@@ -10,10 +10,12 @@ def index(request):
     context = {'result': result}
     return render(request, 'app/index.html', context)
 
+
 class PreferenceUpdate(UpdateView):
     model = Preference
     template_name = 'user/preferences_update_form.html'
     success_url = '/'
+
 
 class PostCreate(CreateView):
     model = Post
