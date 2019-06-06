@@ -52,6 +52,16 @@ def post_reserve(request, id):
     return redirect('/')
 
 
+# Reservations
+def reservations_list(request):
+    reservations = Reservation.objects.all().filter(user_passenger=request.user)
+
+    context = {
+        'reservations': reservations
+    }
+    return render(request, 'reservations/list.html', context)
+
+
 # Preferences
 @login_required
 def update_profile(request):

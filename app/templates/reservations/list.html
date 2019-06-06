@@ -1,0 +1,9 @@
+{% extends 'app/layout.html' %}
+
+{% block content %}
+
+{% for reservation in reservations %}
+    <li>{{ reservation.post.title }}</li>
+{% endfor %}
+
+{% endblock %}
