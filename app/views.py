@@ -33,3 +33,8 @@ class PostCreate(CreateView):
     template_name = 'user/post_create_form.html'
     success_url = '/'
     fields = ('title', 'passengers_nb', 'departure', 'arrival', 'full')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
