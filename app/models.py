@@ -20,3 +20,13 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+class Preference(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    cigarette = models.BooleanField()
+    animal = models.BooleanField()
+    discussion = models.BooleanField()
+    big_suitcase = models.BooleanField()
+
+    def __str__(self):
+        return self.user
