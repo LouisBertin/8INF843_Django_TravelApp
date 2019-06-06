@@ -25,6 +25,11 @@ class Post(models.Model):
         return self.title
 
 
+class Reservation(models.Model):
+    user_passenger = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+
 class Preference(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     cigarette = models.BooleanField(default=False)

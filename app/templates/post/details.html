@@ -4,5 +4,6 @@
 
 <h1>{{ post.title }}</h1>
 <p>{{ post.departure }}</p>
+<a class="btn btn-outline-primary" href="{% url 'post_reserve' id=post.id %}" onclick="return confirm('Are you sure?')">Reserve</a>
 
 {% endblock %}
