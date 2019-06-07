@@ -2,19 +2,39 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <p>Welcome {{ user.username }}, you can <a class="btn btn-outline-primary" href="{% url 'post_create' %}">Create a post</a></p>
-    {% endif %}<br>
+        <h2>Welcome {{ user.username }}</h2>
+        <a class="btn btn-outline-primary" href="{% url 'post_create' %}">Create a post</a>
+    {% endif %}<br><br><br>
 
     <form action="{% url 'search_results' %}" method="get">
         <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="q">
     </form>
 
     <br>
-    <h2>All articles</h2>
+    <h2>All the carpool ads</h2>
     <ul>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Date & Time</th>
+          <th scope="col">Departure</th>
+          <th scope="col">Arrival</th>
+          <th scope="col">$</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for post in posts %}
-            <li>{{ post.title }}</li>
-            <a href="{% url 'post_details' id=post.id %}">details</a>
+          {% if post.full != 1 %}
+            <tr>
+              <th scope="row">{{ post.pub_date }}</th>
+              <td>{{ post.departure }}</td>
+              <td>{{ post.arrival }}</td>
+              <td>10</td>
+              <td><a href="{% url 'post_details' id=post.id %}">See here</a></td>
+            </tr>
+          {% endif %}
         {% endfor %}
-    </ul>
+      </tbody>
+    </table>
 {% endblock %}

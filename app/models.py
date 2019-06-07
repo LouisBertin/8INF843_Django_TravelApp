@@ -17,7 +17,7 @@ class Post(models.Model):
     arrival = models.CharField(max_length=255)
     title = models.CharField(max_length=255, null=True)
     passengers_nb = models.IntegerField()
-    full = models.BooleanField()
+    full = models.BooleanField(default=False)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

@@ -23,7 +23,7 @@ class PostCreate(CreateView):
     model = Post
     template_name = 'user/post_create_form.html'
     success_url = '/'
-    fields = ('title', 'passengers_nb', 'departure', 'arrival', 'full')
+    fields = ('title', 'passengers_nb', 'departure', 'arrival', )
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -34,12 +34,16 @@ def post_details(request, id):
     is_reserved = False
     post = Post.objects.get(id=id)
 
+    #C'est la ligne suivante qui ne marche pas... :/ :
+    preference = Preference.objects.all().filter(user=post.user)
+
     if request.user.is_authenticated:
         is_reserved = Reservation.objects.filter(post=post, user_passenger=request.user).exists()
 
     context = {
         'post': post,
-        'is_reserved': is_reserved
+        'is_reserved': is_reserved,
+        'preference': preference
     }
     return render(request, 'post/details.html', context)
 
