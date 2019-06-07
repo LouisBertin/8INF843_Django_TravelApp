@@ -26,3 +26,9 @@ A Django project
 * use your own database
 * :warning: duplicate `./project/settings.py.env` and rename it `settings.py`. And add your database credentials inside!
 * run the python3 server `python manage.py runserver`
+
+## Fixtures
+
+* create new fixture file `python manage.py dumpdata --format=json app > project/fixtures/data.json`
+* reset django database `python manage.py flush`
+* load fixtures `python manage.py loaddata data`

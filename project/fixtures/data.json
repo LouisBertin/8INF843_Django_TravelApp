@@ -1,0 +1,72 @@
+[ {
+  "model": "app.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$TofIPDYfmqrw$b4amCyPQheGdyK4NWtaaJBPOGS5bO9ky2ZlBYcXxFh8=", "last_login": "2019-06-06T22:49:10.972Z", "is_superuser": false, "username": "toto", "first_name": "", "last_name": "", "email": "toto@example.com", "is_staff": false, "is_active": true, "date_joined": "2019-06-06T18:46:51.073Z", "money": 330, "groups": [], "user_permissions": []
+  }
+}
+
+,
+  {
+    "model": "app.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$150000$0r31jDdMcLFL$ORfuXS1oFnODbQ0yYc3WP3QMDMrJpBi0Vcc3fUE6HbY=", "last_login": "2019-06-06T22:44:00.103Z", "is_superuser": true, "username": "admin", "first_name": "", "last_name": "", "email": "admin@example.fr", "is_staff": true, "is_active": true, "date_joined": "2019-06-06T18:55:15.896Z", "money": 300, "groups": [], "user_permissions": []
+    }
+  }
+
+,
+  {
+    "model": "app.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$150000$hGDtCCK26nUl$ze0PwIPfERa2zjHGkAHl1TnIb0E+EFC2kr7GgcWZPTA=", "last_login": "2019-06-06T21:52:35.578Z", "is_superuser": false, "username": "jean", "first_name": "", "last_name": "", "email": "jean@example.com", "is_staff": false, "is_active": true, "date_joined": "2019-06-06T20:19:54.113Z", "money": 270, "groups": [], "user_permissions": []
+    }
+  }
+
+,
+  {
+    "model": "app.post",
+    "pk": 15,
+    "fields": {
+      "departure": "montreal", "arrival": "chicoutimi", "title": "test", "passengers_nb": 2, "full": false, "pub_date": "2019-06-06T22:36:41.733Z", "user": 1
+    }
+  }
+
+,
+  {
+    "model": "app.post",
+    "pk": 16,
+    "fields": {
+      "departure": "toronto", "arrival": "boston", "title": "test2", "passengers_nb": 10, "full": false, "pub_date": "2019-06-06T22:49:29.899Z", "user": 1
+    }
+  }
+
+,
+  {
+    "model": "app.preference",
+    "pk": 1,
+    "fields": {
+      "user": 1, "cigarette": false, "animal": false, "discussion": true, "big_suitcase": true
+    }
+  }
+
+,
+  {
+    "model": "app.preference",
+    "pk": 2,
+    "fields": {
+      "user": 2, "cigarette": false, "animal": false, "discussion": true, "big_suitcase": true
+    }
+  }
+
+,
+  {
+    "model": "app.preference",
+    "pk": 3,
+    "fields": {
+      "user": 3, "cigarette": false, "animal": false, "discussion": true, "big_suitcase": true
+    }
+  }
+
+]
