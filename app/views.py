@@ -10,7 +10,7 @@ from app.models import Post, Preference, Reservation
 
 # Create your views here.
 def index(request):
-    posts = Post.objects.all()[:5]
+    posts = Post.objects.all().filter(full=False)[:5]
 
     context = {
         'posts': posts,
