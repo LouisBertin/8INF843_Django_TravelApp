@@ -2,9 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from bootstrap_datepicker_plus import DateTimePickerInput
+from django.views import generic
 
-from app.forms import PreferenceForm
+
+from app.forms import PreferenceForm, CreatePostForm
 from app.models import Post, Preference, Reservation
 
 
@@ -19,11 +21,10 @@ def index(request):
 
 
 # Posts
-class PostCreate(CreateView):
-    model = Post
+class PostCreate(generic.edit.CreateView):
     template_name = 'user/post_create_form.html'
     success_url = '/'
-    fields = ('title', 'passengers_nb', 'departure', 'arrival', )
+    form_class = CreatePostForm
 
     def form_valid(self, form):
         form.instance.user = self.request.user

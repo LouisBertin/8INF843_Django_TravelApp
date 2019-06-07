@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 
 
 class User(AbstractUser):
@@ -18,6 +19,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255, null=True)
     passengers_nb = models.IntegerField()
     full = models.BooleanField(default=False)
+    departure_date = models.DateTimeField(default=timezone.now)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
