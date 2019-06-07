@@ -33,9 +33,7 @@ class PostCreate(CreateView):
 def post_details(request, id):
     is_reserved = False
     post = Post.objects.get(id=id)
-
-    #C'est la ligne suivante qui ne marche pas... :/ :
-    preference = Preference.objects.all().filter(user=post.user)
+    preference = post.user.preference
 
     if request.user.is_authenticated:
         is_reserved = Reservation.objects.filter(post=post, user_passenger=request.user).exists()

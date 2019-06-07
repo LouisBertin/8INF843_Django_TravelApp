@@ -15,20 +15,22 @@
        <br><br>
        Other Info: <br>
 
-       Animal: {{% if preference.animal %}} Authorized {{% else %}} Unauthorized {{% endif %}} |
-       Big suitcase: {{% if preference.big_suitcase %}} Authorized {{% else %}} Unauthorized {{% endif %}} |
-       Cigarette: {{% if preference.cigarette %}} Authorized {{% else %}} Unauthorized {{% endif %}}
-     </p>
-    {% if user.is_authenticated %}
-    <a href="#" class="btn btn-primary">Make a reservation</a>
+       Animal: {% if preference.animal %} Authorized {% else %} Unauthorized {% endif %} |
+       Big suitcase: {% if preference.big_suitcase %} Authorized {% else %} Unauthorized {% endif %} |
+       Cigarette: {% if preference.cigarette %} Authorized {% else %} Unauthorized {% endif %}
+    </p>
+
+    {% if user.is_authenticated and user.id != post.user.id and not is_reserved %}
+        <a href="#" class="btn btn-primary" href="{% url 'post_reserve' id=post.id %}" onclick="return confirm('Are you sure?')">Make a reservation</a>
     {% else %}
-      <a class="btn btn-outline-primary" href="{% url 'login' %}">Sign in to make a reservation</a>
+        <a class="btn btn-outline-primary" href="{% url 'login' %}">Sign in to make a reservation</a>
     {% endif %}
   </div>
 </div>
 
-{% if user.is_authenticated and user.id != post.user.id and not is_reserved %}
+<!-- cette ligne là -->
+<!--{% if user.is_authenticated and user.id != post.user.id and not is_reserved %}
   <a class="btn btn-outline-primary" href="{% url 'post_reserve' id=post.id %}" onclick="return confirm('Are you sure?')">Reserve</a>
-{% endif %}
+{% endif %}-->
 
 {% endblock %}
