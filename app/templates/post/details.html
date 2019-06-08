@@ -22,7 +22,7 @@
 
     {% if user.is_authenticated %}
         {% if user.id != post.user.id and not is_reserved %}
-            <a href="#" class="btn btn-primary" href="{% url 'post_reserve' id=post.id %}" onclick="return confirm('Are you sure?')">Make a reservation</a>
+            <a class="btn btn-primary" href="{% url 'post_reserve' id=post.id %}" onclick="return confirm('Are you sure?')">Make a reservation</a>
         {% endif %}
     {% else %}
         <a class="btn btn-outline-primary" href="{% url 'login' %}">Sign in to make a reservation</a>
