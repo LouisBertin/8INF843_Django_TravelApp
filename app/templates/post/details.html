@@ -6,23 +6,27 @@
   <div class="card-body">
     <h5 class="card-title">{{ post.departure_date }}  </h5>
     <p class="card-text">Departure: <b>{{ post.departure }}</b> <br>
-       Arrival: <b>{{ post.arrival }}</b>
-       Available seat: {{ post.passengers_nb }}
+       Arrival: <b>{{ post.arrival }}</b><br>
+       Available seat: <b>{{ post.passengers_nb }}</b><br>
+       Cost: <b>10$CAD</b>
        <br><br>
-       <b>Contact info:</b><br>
-       Usename: {{ post.user.username }}<br>
-       E-mail: {{ post.user.email }}
+       Contact info:<br>
+       Usename: <b>{{ post.user.username }}</b><br>
+       E-mail: <b>{{ post.user.email }}</b>
        <br><br>
        Other Info: <br>
 
-       Animal: {% if preference.animal %} Authorized {% else %} Unauthorized {% endif %} |
-       Big suitcase: {% if preference.big_suitcase %} Authorized {% else %} Unauthorized {% endif %} |
-       Cigarette: {% if preference.cigarette %} Authorized {% else %} Unauthorized {% endif %}
+       Animal: {% if preference.animal %} <b>Authorized</b> {% else %} <b>Unauthorized</b> {% endif %} |
+       Big suitcase: {% if preference.big_suitcase %} <b>Authorized</b> {% else %} <b>Unauthorized</b> {% endif %} |
+       Cigarette: {% if preference.cigarette %} <b>Authorized</b> {% else %} <b>Unauthorized</b> {% endif %}
     </p>
 
     {% if user.is_authenticated %}
         {% if user.id != post.user.id and not is_reserved %}
             <a class="btn btn-primary" href="{% url 'post_reserve' id=post.id %}" onclick="return confirm('Are you sure?')">Make a reservation</a>
+        {% endif %}
+        {% if user.id == post.user.id %}
+            <a class="btn btn-danger mx-1" href="{% url 'post_delete' id=post.id %}">Delete my post</a>
         {% endif %}
     {% else %}
         <a class="btn btn-outline-primary" href="{% url 'login' %}">Sign in to make a reservation</a>

@@ -11,6 +11,8 @@ urlpatterns = [
     path('post/delete/<int:id>', views.post_delete, name='post_delete'),
     # reservation
     path('reservations/', views.reservations_list, name='reservations_list'),
+    # published posts
+    path('published_posts/', views.posts_list, name='posts_list'),
 
     # search
     path('search/', views.SearchResultsView.as_view(), name='search_results'),

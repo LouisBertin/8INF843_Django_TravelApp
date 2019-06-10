@@ -79,6 +79,17 @@ def reservations_list(request):
     }
     return render(request, 'reservations/list.html', context)
 
+#Posts published
+def posts_list(request):
+    reservations = Reservation.objects.all().filter(user_passenger=request.user)
+    posts = Post.objects.all().filter(user=request.user)
+
+    context = {
+        'reservations': reservations,
+        'posts': posts
+    }
+    return render(request, 'post/list.html', context)
+
 
 # Search
 class SearchResultsView(ListView):

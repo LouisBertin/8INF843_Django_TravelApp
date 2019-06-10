@@ -2,14 +2,32 @@
 
 {% block content %}
 <h1>Search Results</h1>
-
-<ul>
-    {% for post in object_list %}
-    <li>
-        <a href="{% url 'post_details' id=post.id %}">{{ post.title }}, {{ post.departure }} - {{ post.arrival }}</a>
-    </li>
-    {% empty %}
-        <p>No results.</p>
-    {% endfor %}
-</ul>
+{% if object_list %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Date & Time</th>
+        <th scope="col">Departure</th>
+        <th scope="col">Arrival</th>
+        <th scope="col">Cost ($CAD)</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in object_list %}
+        {% if post.full != 1 %}
+          <tr>
+            <th scope="row">{{ post.departure_date }}</th>
+            <td>{{ post.departure }}</td>
+            <td>{{ post.arrival }}</td>
+            <td>10</td>
+            <td><a href="{% url 'post_details' id=post.id %}">See here</a></td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No results.</p>
+{% endif %}
 {% endblock %}

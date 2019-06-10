@@ -22,6 +22,7 @@
     {% if user.is_authenticated %}
       <nav class="my-2 my-md-0 mr-md-3">
           <a class="p-2 text-dark" href="{% url 'reservations_list' %}">My reservations</a>
+          <a class="p-2 text-dark" href="{% url 'posts_list' %}">My Posts</a>
           <a class="p-2 text-dark" href="{% url 'preferences_update' %}">Preferences</a>
       </nav>
     {% endif %}

@@ -1,0 +1,10 @@
+{% extends 'app/layout.html' %}
+
+{% block content %}
+<h2>My posts</h2>
+<hr>
+{% for post in posts %}
+<li>{{ post.departure_date }}: {{ post.departure }} - {{ post.arrival }} | <a href="{% url 'post_details' id=post.id %}">See details here</a></li>
+{% endfor %}
+
+{% endblock %}
