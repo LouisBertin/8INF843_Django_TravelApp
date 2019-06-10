@@ -9,7 +9,7 @@ services:
     ports:
       - "8080:8080"
   django:
-    image: louisbertin/django:v0.0.2
+    image: louisbertin/django:v0.0.3
     ports:
       - "8000:8000"
     depends_on:
