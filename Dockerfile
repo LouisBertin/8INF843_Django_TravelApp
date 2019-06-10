@@ -1,4 +1,5 @@
 FROM python:3
+RUN apt-get update && apt-get install -f -y postgresql-client
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code
@@ -13,4 +14,4 @@ COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
 # default command to execute
-ENTRYPOINT [ "sh", "entrypoint.sh" ]
+ENTRYPOINT [ "sh", "entrypoint.sh", "db" ]
