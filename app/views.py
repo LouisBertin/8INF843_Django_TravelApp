@@ -59,6 +59,14 @@ def post_reserve(request, id):
     post.user.money += 10
     post.user.save()
 
+    if post.passengers_nb == 1:
+        post.passengers_nb = 0
+        post.full = True
+    else:
+        post.passengers_nb -= 1
+
+    post.save()
+
     return redirect('/')
 
 
